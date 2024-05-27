@@ -1,0 +1,20 @@
+{
+    "name": "stbdigital/module-zoones",
+    "description": "Zoones API Connector",
+    "version": "0.0.1",
+    "type": "magento2-module",
+    "authors": [
+        {
+            "name": "Christoph Seebacher",
+            "email": "christoph.seebacher@steibach.at"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "STBDigital\\Zoones\\": ""
+        }
+    }
+}
