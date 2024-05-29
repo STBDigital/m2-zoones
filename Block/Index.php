@@ -1,11 +1,32 @@
 <?php
+/**
+ * @author  Christoph Seebacher <christoph.seebacher@steinbach.at   >
+ * @package STBDigital\Zoones\Block
+ * @copyright Copyright (c) 2024 Steinbach International GmbH
+ * @created 29.05.2024
+ */
 
 namespace STBDigital\Zoones\Block;
 
+use Magento\Framework\App\Config\ScopeConfigInterface;
+
+/**
+ * Class Index
+ * @package STBDigital\Zoones\Block
+ */
 class Index extends \Magento\Framework\View\Element\Template
 {
-    public function __construct(\Magento\Framework\View\Element\Template\Context $context)
+    /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfig;
+    const ZOONES_ORDERSTATUS_API_URL = 'zoones_orderstatus/settings/api_url';
+
+    public function __construct(
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Framework\View\Element\Template\Context $context)
     {
+        $this->scopeConfig = $scopeConfig;
         parent::__construct($context);
     }
 
@@ -22,7 +43,7 @@ class Index extends \Magento\Framework\View\Element\Template
         $lang = strstr($haystack, '_', true);
         $params = $this->getRequestParams();
 
-        if (array_key_exists("zipCode", $params) && array_key_exists("orderNumber", $params) ) {
+        if (array_key_exists("zip", $params) && array_key_exists("reference", $params) ) {
             return $this->getOrderStatusData($params, $lang);
         } else {
             return [
@@ -33,6 +54,7 @@ class Index extends \Magento\Framework\View\Element\Template
 
     protected function getOrderStatusData($params, $langCode)
     {
+        $langWhitelist = ["de", "en"];
         $icons = [
             'PENDING' => 'fas fa-conveyor-belt-alt',
             'IN_WORK' => 'fas fa-barcode-read',
@@ -42,16 +64,16 @@ class Index extends \Magento\Framework\View\Element\Template
             'ATD' => 'fas fa-shipping-fast',
             'CANCELLED' => 'fas fa-times',
         ];
-
         $headers = [
-            'Accept-Language: ' . $langCode,
+            'Accept-Language: ' . (in_array($langCode, $langWhitelist) ? $langCode : "en"),
         ];
-
-        $get_params = '?orderReference=' . $params['orderNumber'] . '&zip=' . $params['zipCode'];
+        $get_params = '?orderReference=' . $params['reference'] . '&zip=' . $params['zip'];
+        $base_url = $this->scopeConfig->getValue(self::ZOONES_ORDERSTATUS_API_URL);
+        $request_url = $base_url . $get_params;
 
         //fetch api data
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'https://zoones.steinbach.at/portal_api/public/orders/status' . $get_params);
+        curl_setopt($curl, CURLOPT_URL, $request_url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $server_output = curl_exec($curl);
@@ -84,8 +106,8 @@ class Index extends \Magento\Framework\View\Element\Template
             }
 
             return [
-                'orderNumber' => $params['orderNumber'],
-                'zipCode' => $params['zipCode'],
+                'reference' => $params['reference'],
+                'zip' => $params['zip'],
                 'currentStatus' => $result[0]['status'],
                 'items' => $result,
                 'valid' => true
@@ -93,8 +115,8 @@ class Index extends \Magento\Framework\View\Element\Template
         }
 
         return [
-            'orderNumber' => $params['orderNumber'],
-            'zipCode' => $params['zipCode'],
+            'reference' => $params['reference'],
+            'zip' => $params['zip'],
             'items' => [],
             'valid' => true
         ];

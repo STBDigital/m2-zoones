@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="zoones_tab" translate="label" sortOrder="1000">
+            <label>Zoones</label>
+        </tab>
+
+        <section id="zoones_orderstatus" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Order Status</label>
+            <tab>zoones_tab</tab>
+            <resource>STBDigital_Zoones::config</resource>
+            <group id="settings" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <field id="api_url" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API URL</label>
+                    <comment>Insert Zoones API URL, to get order status information</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
