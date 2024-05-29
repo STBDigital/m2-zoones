@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @var \STBDigital\Zoones\Block\Index $block
+ */
+
+$result = $block->getItems();
+?>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <?php if ($result['valid']) { ?>
+                <div class="col-12">
+                    <div class="zoones-orderstatus__summary zoones-orderstatus__summary--top">
+                        <div class="zoones-orderstatus__summary__item">
+                            <?php if (count($result["items"])) { ?>
+                                <span>Aktueller Status: </span><b><?= $result['currentStatus']; ?></b>
+                            <?php } else { ?>
+                                <span>Leider konnten wir keine Bestellung zu den angegebenen Inforamtionen finden. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut oder kontaktieren Sie uns über unser <a
+                                        href="https://hilfe.steinbach.at/de/new-ticket">Kontaktformular</a></span>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="zoones-orderstatus__summary">
+                        <div class="zoones-orderstatus__summary__item">
+                            <span>Order number: </span><b><?= $result['orderNumber']; ?></b>
+                        </div>
+                        <div class="zoones-orderstatus__summary__item">
+                            <span>Zip code: </span><b><?= $result['zipCode']; ?></b>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            <div class="col-12 col-lg-6">
+                <form id="orderStatusForm">
+                    <div class="form-group">
+                        <label for="orderNumber">Order Number:</label>
+                        <input required="required" type="text" name="orderNumber"
+                               value="<?= $result['valid'] ? $result['orderNumber'] : '' ?>"
+                               class="form-control mb-1">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Zip Code: </label>
+                        <input required="required" type="text" name="zipCode"
+                               value="<?= $result['valid'] ? $result['zipCode'] : '' ?>"
+                               class="form-control mb-2">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Check Status">
+                </form>
+            </div>
+            <?php if ($result['valid'] && count($result["items"])) { ?>
+                <div class="col-12 col-lg-6">
+                    <div class="zoones-orderstatus__history">
+                        <h5 class="text-uppercase">Bestellverlauf</h5>
+                        <ul class="zoones-orderstatus__list list-unstyled">
+                            <?php foreach ($result['items'] as $item) { ?>
+                                <li class="zoones-orderstatus__listitem">
+                                    <div class="zoones-orderstatus__icon">
+                                        <i class="<?= $item['iconClass']; ?>"></i>
+                                    </div>
+                                    <div class="zoones-orderstatus__info">
+                                        <b><?= $item['status']; ?></b>
+                                        <?php if ($item['timeStamp']) { ?>
+                                            <span><?= $item['timeStamp']; ?></span>
+                                        <?php } ?>
+                                        <span><?= $item['description']; ?></span>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>

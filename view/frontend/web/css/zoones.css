@@ -1,0 +1,110 @@
+
+.zoones-orderstatus__title {
+    color: #f08108;
+    margin-bottom: 30px;
+}
+
+.zoones-orderstatus__summary {
+    padding: 5px 15px;
+    background: #1d343d;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.zoones-orderstatus__list {
+    margin-bottom: 60px;
+}
+
+@media print, screen and (min-width: 576px) {
+    .zoones-orderstatus__summary {
+        margin: 0 0 30px; !important;
+    }
+}
+
+.zoones-orderstatus__summary--top {
+    background: #f08108;
+    margin-bottom: 0 !important;
+}
+
+.zoones-orderstatus__summary__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.zoones-orderstatus__icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 3px solid #f08108;
+    padding: 10px;
+    margin-right: 20px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.zoones-orderstatus__icon i {
+    font-size: 18px;
+    color: #f08108;
+}
+
+.zoones-orderstatus__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.zoones-orderstatus__listitem {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px 15px;
+    line-height: 1.5;
+}
+
+@media print, screen and (min-width: 576px) {
+    .zoones-orderstatus__listitem {
+        margin: 0 !important;
+    }
+}
+
+
+.zoones-orderstatus__listitem:not(:first-child) .zoones-orderstatus__icon {
+    border-color: #dedcda;
+}
+
+.zoones-orderstatus__listitem:not(:first-child) .zoones-orderstatus__icon i {
+    color: #dedcda;
+}
+
+.zoones-orderstatus__listitem:nth-child(odd) {
+    background: white;
+}
+
+.zoones-orderstatus__listitem span {
+    font-size: 14px;
+}
