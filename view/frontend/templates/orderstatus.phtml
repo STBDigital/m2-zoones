@@ -11,22 +11,21 @@ $result = $block->getItems();
         <div class="row">
             <?php if ($result['valid']) { ?>
                 <div class="col-12">
-                    <div class="zoones-orderstatus__summary zoones-orderstatus__summary--top">
+                    <div class="zoones-orderstatus__summary zoones-orderstatus__summary--top bg-primary">
                         <div class="zoones-orderstatus__summary__item">
                             <?php if (count($result["items"])) { ?>
-                                <span>Aktueller Status: </span><b><?= $result['currentStatus']; ?></b>
+                                <span><?php echo __("zoones.currentstatus")?></span><b><?= $result['currentStatus']; ?></b>
                             <?php } else { ?>
-                                <span>Leider konnten wir keine Bestellung zu den angegebenen Inforamtionen finden. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut oder kontaktieren Sie uns über unser <a
-                                        href="https://hilfe.steinbach.at/de/new-ticket">Kontaktformular</a></span>
+                                <span><?php echo __("zoones.noresults")?></span>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="zoones-orderstatus__summary">
                         <div class="zoones-orderstatus__summary__item">
-                            <span>Order number: </span><b><?= $result['orderNumber']; ?></b>
+                            <span><?php echo __("zoones.reference")?></span><b><?= $result['reference']; ?></b>
                         </div>
                         <div class="zoones-orderstatus__summary__item">
-                            <span>Zip code: </span><b><?= $result['zipCode']; ?></b>
+                            <span><?php echo __("zoones.zipcode")?></span><b><?= $result['zip']; ?></b>
                         </div>
                     </div>
                 </div>
@@ -34,24 +33,24 @@ $result = $block->getItems();
             <div class="col-12 col-lg-6">
                 <form id="orderStatusForm">
                     <div class="form-group">
-                        <label for="orderNumber">Order Number:</label>
-                        <input required="required" type="text" name="orderNumber"
-                               value="<?= $result['valid'] ? $result['orderNumber'] : '' ?>"
+                        <label for="reference"><?php echo __("zoones.reference")?></label>
+                        <input required="required" type="text" name="reference"
+                               value="<?= $result['valid'] ? $result['reference'] : '' ?>"
                                class="form-control mb-1">
                     </div>
                     <div class="form-group">
-                        <label for="zipCode">Zip Code: </label>
-                        <input required="required" type="text" name="zipCode"
-                               value="<?= $result['valid'] ? $result['zipCode'] : '' ?>"
+                        <label for="zip"><?php echo __("zoones.zipcode")?></label>
+                        <input required="required" type="text" name="zip"
+                               value="<?= $result['valid'] ? $result['zip'] : '' ?>"
                                class="form-control mb-2">
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Check Status">
+                    <input type="submit" class="btn btn-primary" value="<?php echo __("zoones.checkorder")?>">
                 </form>
             </div>
             <?php if ($result['valid'] && count($result["items"])) { ?>
                 <div class="col-12 col-lg-6">
                     <div class="zoones-orderstatus__history">
-                        <h5 class="text-uppercase">Bestellverlauf</h5>
+                        <h5 class="text-uppercase"><?php echo __("zoones.history")?></h5>
                         <ul class="zoones-orderstatus__list list-unstyled">
                             <?php foreach ($result['items'] as $item) { ?>
                                 <li class="zoones-orderstatus__listitem">
