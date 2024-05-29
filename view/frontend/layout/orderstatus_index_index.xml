@@ -11,6 +11,12 @@
         </referenceBlock>
         <referenceContainer name="content">
             <block class="STBDigital\Zoones\Block\Index" name="content.orderstatus" template="STBDigital_Zoones::orderstatus.phtml"/>
+            <block class="Economix\Typo3Sync\Block\ExternalBlockContent" name="external.page.content">
+                <arguments>
+                    <argument name="externalContent" xsi:type="string">page/content</argument>
+                    <argument name="resolveContent" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>
