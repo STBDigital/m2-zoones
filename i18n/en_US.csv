@@ -1,5 +1,7 @@
 "zoones.reference","Order number"
 "zoones.zipcode","Zip code"
+"zoones.reference.note","Please insert your requested ordernumer, like XOXOXOXO or XXXXXXXX. You can find the information on your order confirmation."
+"zoones.zipcode.note","Please insert the zip code you've used for the requested order."
 "zoones.currentstatus","Current status"
 "zoones.noresults","Unfortunately we could not find an order for the specified information. Please check your entries and try again or contact us via our <a href=""https://hilfe.steinbach.at/en/new-ticket"" target=""_blank"">contact form.</a>"
 "zoones.history","Order history"

@@ -1,5 +1,7 @@
 "zoones.reference", "Bestellnummer"
 "zoones.zipcode","PLZ"
+"zoones.reference.note","Bitte fügen Sie hier Ihre Bestellnummer, z.B.: XOXOXOXO, oder XXXXXXXX ein. Sie können diese Nummer der Bestellbestätigung entnehnmen."
+"zoones.zipcode.note","Bitte fügen Sie in diesem Feld die PLZ von dem Lieferort Ihrer Bestellung ein."
 "zoones.currentstatus","Aktueller Status"
 "zoones.noresults","Leider konnten wir keine Bestellung zu den angegebenen Inforamtionen finden. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut oder kontaktieren Sie uns über unser <a href=""https://hilfe.steinbach.at/de/new-ticket"" target=""_blank"">Kontaktformular.</a>"
 "zoones.history","Bestellverlauf"
