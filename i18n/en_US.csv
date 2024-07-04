@@ -1,6 +1,6 @@
 "zoones.reference","Order number"
 "zoones.zipcode","Zip code"
-"zoones.reference.note","Enter your order number here, starting with "O" or "W". You can find this number on the order confirmation."
+"zoones.reference.note","Enter your order number here, starting with ""O"" or ""W"". You can find this number on the order confirmation."
 "zoones.zipcode.note","Enter the zip code of the delivery location of your order in this field."
 "zoones.currentstatus","Current status"
 "zoones.noresults","Unfortunately we could not find an order for the specified information. Please check your entries and try again or contact us via our <a href=""https://hilfe.steinbach.at/en/new-ticket"" target=""_blank"">contact form.</a>"
