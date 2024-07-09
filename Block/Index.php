@@ -85,11 +85,13 @@ class Index extends \Magento\Framework\View\Element\Template
         if ($JSON) {
             //sort for mixed order response array
             uasort($JSON, function ($a, $b) {
-                return $a['sort'] - $b['sort'];
+                $a_sort = $a['sort'] ?? PHP_INT_MAX;
+                $b_sort = $b['sort'] ?? PHP_INT_MAX;
+                return $b_sort <=> $a_sort;
             });
 
             //build result array
-            foreach (array_reverse($JSON) as $item) {
+            foreach ($JSON as $item) {
                 $date = null;
 
                 if (array_key_exists('statusTimestamp', $item)) {
