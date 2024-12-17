@@ -46,9 +46,19 @@ class Index extends \Magento\Framework\View\Element\Template
         if (array_key_exists("zip", $params) && array_key_exists("reference", $params) ) {
             return $this->getOrderStatusData($params, $lang);
         } else {
-            return [
+            $data = [
                 'valid' => false
             ];
+
+            if (array_key_exists('reference', $params)) {
+                $data['reference'] = $params['reference'];
+            }
+
+            if (array_key_exists('zip', $params)) {
+                $data['zip'] = $params['zip'];
+            }
+
+            return $data;
         }
     }
 
